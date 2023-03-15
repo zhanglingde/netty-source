@@ -917,6 +917,9 @@
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
           <compilerArgument>-Xlint:-options</compilerArgument>
+	        <compilerArgs>
+		        <arg>--add-exports=java.base/sun.security.x509=ALL-UNNAMED</arg>
+	        </compilerArgs>
           <!-- XXX: maven-release-plugin complains - MRELEASE-715 -->
           <!--
           <compilerArguments>
