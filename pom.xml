@@ -432,7 +432,8 @@
     <module>transport-native-epoll</module>
     <module>transport-native-kqueue</module>
     <module>transport-rxtx</module>
-    <module>transport-sctp</module>
+    <!-- com.sun.nio.sctp 包中类和 jdk 中类重复 -->
+    <!--<module>transport-sctp</module>-->
     <module>transport-udt</module>
     <module>handler</module>
     <module>handler-proxy</module>
@@ -931,34 +932,35 @@
           </excludes>
         </configuration>
       </plugin>
-      <plugin>
-        <!-- ensure that only methods available in java 1.6 can
-             be used even when compiling with java 1.7+ -->
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <version>1.16</version>
-        <configuration>
-          <signature>
-            <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java16</artifactId>
-            <version>1.1</version>
-          </signature>
-          <ignores>
-            <ignore>java.nio.ByteBuffer</ignore>
-          </ignores>
-          <annotations>
-            <annotation>io.netty.util.internal.SuppressJava6Requirement</annotation>
-          </annotations>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+      <!-- netty-common 编译签名错误 -->
+      <!--<plugin>-->
+      <!--  &lt;!&ndash; ensure that only methods available in java 1.6 can-->
+      <!--       be used even when compiling with java 1.7+ &ndash;&gt;-->
+      <!--  <groupId>org.codehaus.mojo</groupId>-->
+      <!--  <artifactId>animal-sniffer-maven-plugin</artifactId>-->
+      <!--  <version>1.16</version>-->
+      <!--  <configuration>-->
+      <!--    <signature>-->
+      <!--      <groupId>org.codehaus.mojo.signature</groupId>-->
+      <!--      <artifactId>java16</artifactId>-->
+      <!--      <version>1.1</version>-->
+      <!--    </signature>-->
+      <!--    <ignores>-->
+      <!--      <ignore>java.nio.ByteBuffer</ignore>-->
+      <!--    </ignores>-->
+      <!--    <annotations>-->
+      <!--      <annotation>io.netty.util.internal.SuppressJava6Requirement</annotation>-->
+      <!--    </annotations>-->
+      <!--  </configuration>-->
+      <!--  <executions>-->
+      <!--    <execution>-->
+      <!--      <phase>process-classes</phase>-->
+      <!--      <goals>-->
+      <!--        <goal>check</goal>-->
+      <!--      </goals>-->
+      <!--    </execution>-->
+      <!--  </executions>-->
+      <!--</plugin>-->
       <plugin>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>3.1.0</version>
